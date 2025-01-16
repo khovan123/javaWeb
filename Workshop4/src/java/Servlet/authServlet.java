@@ -22,7 +22,7 @@ public class authServlet extends HttpServlet {
         String remember = request.getParameter("remember");
         try {
             String displayName = authDAO.select(userName, password);
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession();            
             session.setAttribute("displayName", displayName);
             if (remember != null) {
                 Cookie loginCookie = new Cookie("login", "true");
