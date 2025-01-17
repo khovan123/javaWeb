@@ -1,4 +1,5 @@
 1. Servlet
+
 1.1 Option 1
 If you defined servlet in web.xml like this:
 ```
@@ -15,6 +16,7 @@ If you defined servlet in web.xml like this:
 </web-app>
 ```
 !!! After this, do not define: @WebServlet("/url-to-your-servlet") in your servlet
+
 1.2 Option 2
 If you defined servlet in web.xml like above and you would like to use @WebServlet("/url-to-your-servlet") in your servlet. You must to delete this part in web.xml:
 ```
