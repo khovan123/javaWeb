@@ -19,7 +19,7 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int pageSize = 5;
+        int pageSize = 3;
         ArrayList<Person> personList = new ArrayList<>();
         try {
             int page = Integer.parseInt((String) request.getParameter("page"));
