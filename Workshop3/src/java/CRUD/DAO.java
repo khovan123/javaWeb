@@ -55,14 +55,14 @@ public class DAO {
         return rs.next();
     }
 
-    public String getStudentById(int id) throws SQLException {
+    public Student getStudentById(int id) throws SQLException {
         String query = "SELECT * FROM StudentTBL WHERE Id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, id);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getString("Id") + "," + rs.getString("Name") + "," + rs.getString("Gender") + "," + rs.getString("DOB");
+                    return new Student(rs.getInt("Id"), rs.getString("Name"), Boolean.parseBoolean(rs.getString("Gender")), java.sql.Date.valueOf(rs.getString("DOB")));
                 } else {
                     return null;
                 }

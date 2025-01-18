@@ -7,7 +7,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.sql.SQLException;
+import model.Student;
 
 @WebServlet(urlPatterns = {"/student/create", "/student/update"})
 
@@ -15,80 +17,77 @@ public class StudentCreateServlet extends HttpServlet {
 
     private static DAO studentDao = new DAO();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String error = (String) request.getParameter("error");
-        String _id = (String) request.getParameter("id");
-        String id = null;
-        String name = null;
-        String gender = null;
-        String dob = null;
-        if (_id != null && !_id.isEmpty()) {
-            try {
-                String res = studentDao.getStudentById(Integer.parseInt(_id));
-                if (res != null) {
-                    String data[] = res.split(",");
-                    id = data[0];
-                    name = data[1];
-                    gender = data[2];
-                    dob = data[3];
-                }
-            } catch (NumberFormatException | SQLException e) {
-                error = e.getMessage();
-                _id = null;
-            }
-        }
-        try (PrintWriter out = response.getWriter()) {
-            if (id != null && !id.isEmpty() && error != null && !error.isEmpty()) {
-                out.println("<p style='color:red;'>" + error + "</p>");
-                out.println("<a href='../student/list'>Update</button>");
-            } else {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet StudentCreateServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                if (id != null && !id.isEmpty()) {
-                    out.println("<form action='../student/updateList' method='post'>");
-                    out.println("<input type='hidden' name='oldId' value='" + (_id != null ? _id : "") + "'>");
-                } else {
-                    out.println("<form action='../student/list' method='post'>");
-                }
-                out.println("Id: <input type='number' name='id' id='id' value='" + (id != null ? id : "") + "' required><br><br>");
-                out.println("Name: <input type='text' name='name' id='name' value='" + (name != null ? name : "") + "' required><br><br>");
-                out.println("Gender: ");
-                out.println("<input type='radio' name='gender' id='male' value='male'" + (gender != null && gender.equals("1") ? " checked " : "") + "required> Male ");
-                out.println("<input type='radio' name='gender' id='female' value='female'" + (gender != null && gender.equals("0") ? " checked " : "") + "required> Female<br><br>");
-                out.println("DOB: <input type='date' name='dob' id='dob' value='" + (dob != null ? dob : "") + "' required><br><br>");
-                if (id != null && !id.isEmpty()) {
-                    out.println("<button type='summit'>Update</button>");
-                } else {
-                    out.println("<button type='summit'>Create</button>");
-                }
-                if (error != null && !error.isEmpty()) {
-                    out.println("<p style='color:red;'>" + error + "</p>");
-                }
-                out.println("</form>");
-                out.println("</body>");
-                out.println("</html>");
-            }
-        }
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String idStr = request.getParameter("id");
+        if (idStr != null && request.getRequestURI().endsWith("/update")) {
+            try {
+                Student student = studentDao.getStudentById(Integer.parseInt(idStr));
+                if (student != null) {
+                    request.setAttribute("student", student);
+                    request.setAttribute("_id", student.getId());
+                    request.getRequestDispatcher("../inputPage.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("../student/list");
+                }
+            } catch (NumberFormatException | SQLException e) {
+                response.sendRedirect("../student/list");
+
+            }
+        } else if (request.getRequestURI().endsWith("/create?") || request.getRequestURI().endsWith("/create")) {
+            request.getRequestDispatcher("../inputPage.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("../student/list");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        String idStr = request.getParameter("_id");
+        if (idStr != null && request.getRequestURI().endsWith("/update")) {
+            try {
+                int _id = Integer.parseInt(request.getParameter("_id"));
+                int id = Integer.parseInt(request.getParameter("id"));
+                String name = request.getParameter("name");
+                boolean gender = request.getParameter("gender").equals("male");
+                Date date = java.sql.Date.valueOf(request.getParameter("dob"));
+                Student student = new Student(id, name, gender, date);
+                if (_id != id && studentDao.checkExistedStudent(id)) {
+                    request.setAttribute("student", student);
+                    request.setAttribute("_id", _id);
+                    request.setAttribute("error", "Id was existed!");
+                    request.getRequestDispatcher("../inputPage.jsp").forward(request, response);
+                } else {
+                    studentDao.updateStudent(student, _id);
+                    response.sendRedirect(request.getContextPath() + "/student/list");
+                }
+            } catch (NumberFormatException | SQLException e) {
+                response.sendRedirect(request.getContextPath() + "/student/list");
+            }
+        } else if (request.getRequestURI().endsWith("/create?") || request.getRequestURI().endsWith("/create")) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                String name = request.getParameter("name");
+                boolean gender = request.getParameter("gender").equals("male");
+                Date date = java.sql.Date.valueOf(request.getParameter("dob"));
+                Student student = new Student(id, name, gender, date);
+                if ( studentDao.checkExistedStudent(id)) {
+                    request.setAttribute("student", student);
+                    request.setAttribute("error", "Id was existed!");
+                    request.getRequestDispatcher("../inputPage.jsp").forward(request, response);
+                } else {
+                    studentDao.createStudent(student);
+                    response.sendRedirect(request.getContextPath() + "/student/list");
+                }
+            } catch (NumberFormatException | SQLException e) {
+                response.sendRedirect(request.getContextPath() + "/student/list");
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/student/list");
+        }
     }
-    
 
     @Override
     public String getServletInfo() {
