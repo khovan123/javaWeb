@@ -1,3 +1,5 @@
+package controller;
+
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -27,10 +29,4 @@ public class SendServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }
