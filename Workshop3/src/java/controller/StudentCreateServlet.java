@@ -1,7 +1,8 @@
+package controller;
+
 
 import CRUD.DAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -37,6 +38,7 @@ public class StudentCreateServlet extends HttpServlet {
             }
         } else if (request.getRequestURI().endsWith("/create?") || request.getRequestURI().endsWith("/create")) {
             request.getRequestDispatcher("../inputPage.jsp").forward(request, response);
+//            response.sendRedirect("../inputPage.jsp");
         } else {
             response.sendRedirect("../student/list");
         }
@@ -88,10 +90,4 @@ public class StudentCreateServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/student/list");
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }

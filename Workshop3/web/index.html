@@ -9,13 +9,13 @@
                 font-family: 'lato', sans-serif;
                 margin: 0;
             }
-            .formContainer{
+            .container{
                 height: 100vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 background-color: #343a40;
-                .form{
+                .innerContainer{
                     border-radius: 20px;
                     background-color: #ffffff;
                     width: 99%;
@@ -36,7 +36,7 @@
                         padding-bottom: 40px;
                     }
 
-                    button{
+                    a{
                         width: fit-content;
                         color: #fff;
                         background-image: linear-gradient(to left,#23D1FD,#6F78FE,#B524FF);
@@ -48,9 +48,10 @@
                         transition: transform 0.3s ease-in-out;
                         cursor: pointer;
                         font-size: 12px;
+                        text-decoration: none;
                     }
 
-                    button:hover{
+                    a:hover{
                         transform: scale(1.05);
 
                     }
@@ -59,13 +60,13 @@
         </style>
     </head>
     <body>
-        <div class="formContainer">
-            <form action="student/list" method="get" class="form">
+        <div class="container">
+            <div class="innerContainer">
                 <h1>Welcome</h1>
-                <div class="buttonContainer">
-                    <button type="submit">Student Information</button>
-                </div>
-            </form>
+                <span class="buttonContainer">
+                    <a href='student/list'>Student Information</a>
+                </span>
+            </div>
         </div>
     </body>
 </html>

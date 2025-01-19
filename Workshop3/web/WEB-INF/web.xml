@@ -2,21 +2,10 @@
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
         <servlet-name>StudentListServlet</servlet-name>
-        <servlet-class>StudentListServlet</servlet-class>
+        <servlet-class>controller.StudentListServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>StudentCreateServlet</servlet-name>
-        <servlet-class>StudentCreateServlet</servlet-class>
+        <servlet-class>controller.StudentCreateServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>StudentListServlet</servlet-name>
-        <url-pattern>/student/list</url-pattern>
-        <url-pattern>/student/delete</url-pattern>        
-        <url-pattern>/student/updateList</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>StudentCreateServlet</servlet-name>
-        <url-pattern>/student/create</url-pattern>        
-        <url-pattern>/student/update</url-pattern>
-    </servlet-mapping>
 </web-app>
