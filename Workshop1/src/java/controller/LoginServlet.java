@@ -1,4 +1,4 @@
-package servlet;
+package controller;
 
 
 import jakarta.servlet.ServletException;
@@ -18,15 +18,10 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         if (user.equals(getServletConfig().getInitParameter("user"))
                 && password.equals(getInitParameter("password"))) {
-            request.getRequestDispatcher("WelcomeServlet").forward(request, response);
+//            request.getRequestDispatcher("WelcomeServlet").forward(request, response);
+            response.sendRedirect("WelcomeServlet");
         } else {
-            response.sendRedirect("login.html");
+            response.sendRedirect("login.jsp");
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }
