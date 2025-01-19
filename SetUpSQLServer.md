@@ -8,6 +8,8 @@
 ![image](https://github.com/user-attachments/assets/2b49df66-c26f-49f1-9a71-b9448a1cf8e1)
 2. Set up `SQL Server Management Studio 2X`
 ![image](https://github.com/user-attachments/assets/7d02e45d-f170-4116-b837-7edadbd569f0)
+![image](https://github.com/user-attachments/assets/bcd7153e-0314-4226-8f72-f974550ce1cc)
+![image](https://github.com/user-attachments/assets/8fb9ccfb-4118-4734-bb09-4d74c15ec334)
 ![image](https://github.com/user-attachments/assets/4c42ae64-fe28-4905-b754-49ee839d343e)
 ![image](https://github.com/user-attachments/assets/f29377f8-6caa-4974-a0a5-e6b5967f92c3)
 ![image](https://github.com/user-attachments/assets/e1a4d063-4c57-4361-aa32-d8361218871d)
