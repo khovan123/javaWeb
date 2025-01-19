@@ -4,8 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-    </head> <style>
-
+    </head> 
+    <style>
         body{
             margin: 0;
         }
@@ -75,7 +75,7 @@
             color: #fff;
             background-image: linear-gradient(to left,#23D1FD,#6F78FE,#B524FF);
             border: none;
-            padding:24px 64px;
+            padding:20px 50px;
             border-radius: 100px;
             text-transform: uppercase;
             font-weight: 600;
@@ -104,6 +104,7 @@
     <body>
         <div class="formContainer">
             <form action="auth" method="post">
+                <h1>Login Now</h1>
                 <div>
                     <label>Username</label> 
                     <input type="text" id="userName" name="userName"/>
