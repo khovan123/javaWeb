@@ -44,6 +44,17 @@ public class caculateServlet extends HttpServlet {
                             request.getRequestDispatcher("index.jsp").forward(request, response);
                             return;
                         } else if (a + b > c && b + c > a && a + c > b) {
+                            if (a * a == b * b + c * c || b * b == a * a + c * c || c * c == a * a + b * b) {
+                                request.setAttribute("type", "right-angled triangle");
+                            } else if (a == b && b == c) {
+                                request.setAttribute("type", "equilateral triangle");
+                            } else if (a == b || b == c || a == c) {
+                                request.setAttribute("type", "isosceles triangle");
+                            } else if (a * a > b * b + c * c || b * b > a * a + c * c || c * c > a * a + b * b) {
+                                request.setAttribute("type", "obtuse triangle");
+                            } else {
+                                request.setAttribute("type", "acute triangle");
+                            }
                             double s = (a + b + c) / 2;
                             result = Math.sqrt(s * (s - a) * (s - b) * (s - c));
                         } else {
@@ -87,6 +98,17 @@ public class caculateServlet extends HttpServlet {
                             request.getRequestDispatcher("index.jsp").forward(request, response);
                             return;
                         } else if (a + b > c && b + c > a && a + c > b) {
+                            if (a * a == b * b + c * c || b * b == a * a + c * c || c * c == a * a + b * b) {
+                                request.setAttribute("type", "right-angled triangle");
+                            } else if (a == b && b == c) {
+                                request.setAttribute("type", "equilateral triangle");
+                            } else if (a == b || b == c || a == c) {
+                                request.setAttribute("type", "isosceles triangle");
+                            } else if (a * a > b * b + c * c || b * b > a * a + c * c || c * c > a * a + b * b) {
+                                request.setAttribute("type", "obtuse triangle");
+                            } else {
+                                request.setAttribute("type", "acute triangle");
+                            }
                             result = a + b + c;
                         } else {
                             request.setAttribute("result", "Not a triangle");

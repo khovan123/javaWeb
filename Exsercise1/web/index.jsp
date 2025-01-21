@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String result = (String) request.getAttribute("result");
@@ -82,23 +83,23 @@
                         <input hidden id="cal" name="cal"/>
                         <div class="form" style="display: flex; flex-direction: column;gap:10px;padding: 20px;display: none;">
                             <label for="length">Length (a)</label>
-                            <input id="length" name="length" type="number" required />
+                            <input id="length" name="length" type="number" />
                             <label for="width">Width (b)</label>
-                            <input id="width" name="width" type="number" required/>
+                            <input id="width" name="width" type="number"/>
                         </div>
 
                         <div class="form" style="display: flex; flex-direction: column;gap:10px;padding: 20px;display: none;">
                             <label for="edgeA">Edge (a)</label>
-                            <input id="edgeA" name="edgeA" type="number" required/>
+                            <input id="edgeA" name="edgeA" type="number"/>
                             <label for="edgeB">Edge (b)</label>
-                            <input id="edgeB" name="edgeB" type="number" required/>
+                            <input id="edgeB" name="edgeB" type="number"/>
                             <label for="edgeC">Edge (c)</label>
-                            <input id="edgeC" name="edgeC" type="number" required/>
+                            <input id="edgeC" name="edgeC" type="number"/>
                         </div>
 
                         <div class="form" style="display: flex; flex-direction: column;gap:10px;padding: 20px;display: none;">
                             <label for="radius">Radius (r)</label>
-                            <input id="radius" name="radius" type="number" required/>
+                            <input id="radius" name="radius" type="number"/>
                         </div>
 
                         <div style="display: flex; justify-content: center;background-color: #374151; padding: 10px 0; border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;">
@@ -106,9 +107,15 @@
                         </div>
                     </form>
                 </div>
-                <div style="background-color: #1C3782;width: 350px;border-radius: 10px;display: flex;align-items: center; padding: 20px;gap:5px;">
-                    <label>Result: </label>
-                    <input id="result" style="background-color: transparent;border: none;border-bottom: 1px solid #5045E5;width: 100%;color: #fff;font-size: 16px;" readonly  value="<%= (result != null) ? result : "" %>"/>
+                <div style="background-color: #1C3782;width: 350px;border-radius: 10px;display: flex;flex-direction: column; align-items: start; padding: 20px;gap:12px;">
+                    <div style="display: flex; align-items: center;"> 
+                        <label>Result: </label>
+                        <input id="result" style="background-color: transparent;border: none;border-bottom: 1px solid #5045E5;width: 100%;color: #fff;font-size: 16px;" readonly  value="<%= (result != null) ? result : "" %>"/>
+                    </div>
+
+                    <c:if test="${type!=null}">
+                        <input id="type" type="text" name="type" value="${type}" readonly style="background-color: transparent;border: none;color: wheat;text-transform: capitalize;"/>
+                    </c:if>
                 </div>
             </div>
         </section>
