@@ -51,7 +51,7 @@ public class StudentServlet extends HttpServlet {
             }
             studentList.add(student);
         } catch (NumberFormatException | ParseException e) {
-
+            response.sendRedirect("inputPage.jsp");
         }
         response.sendRedirect("StudentServlet");
     }
