@@ -1,3 +1,4 @@
+package controller;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -27,21 +28,40 @@ public class caculateServlet extends HttpServlet {
                     case "rectangle" -> {
                         double length = Double.parseDouble(request.getParameter("length"));
                         double width = Double.parseDouble(request.getParameter("width"));
+                        if (length <= 0 || width <= 0) {
+                            request.setAttribute("result", "Invalid Value!");
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                            return;
+                        }
                         result = length * width;
                     }
                     case "triangle" -> {
                         double a = Double.parseDouble(request.getParameter("edgeA"));
                         double b = Double.parseDouble(request.getParameter("edgeB"));
                         double c = Double.parseDouble(request.getParameter("edgeC"));
-                        double s = (a + b + c) / 2;
-                        result = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+                        if (a <= 0 || b <= 0 || c <= 0) {
+                            request.setAttribute("result", "Invalid Value!");
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                            return;
+                        } else if (a + b > c && b + c > a && a + c > b) {
+                            double s = (a + b + c) / 2;
+                            result = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+                        } else {
+                            request.setAttribute("result", "Not a triangle");
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                            return;
+                        }
                     }
                     case "circle" -> {
                         double radius = Double.parseDouble(request.getParameter("radius"));
+                        if (radius <= 0) {
+                            request.setAttribute("result", "Invalid Value!");
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                            return;
+                        }
                         result = Math.PI * Math.pow(radius, 2);
                     }
                 }
-                request.setAttribute("result", String.valueOf(result));
             } catch (NumberFormatException e) {
                 request.setAttribute("result", null);
             }
@@ -51,27 +71,46 @@ public class caculateServlet extends HttpServlet {
                     case "rectangle" -> {
                         double length = Double.parseDouble(request.getParameter("length"));
                         double width = Double.parseDouble(request.getParameter("width"));
+                        if (length <= 0 || width <= 0) {
+                            request.setAttribute("result", "Invalid Value!");
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                            return;
+                        }
                         result = (length + width) * 2;
                     }
                     case "triangle" -> {
                         double a = Double.parseDouble(request.getParameter("edgeA"));
                         double b = Double.parseDouble(request.getParameter("edgeB"));
                         double c = Double.parseDouble(request.getParameter("edgeC"));
-                        result = a + b + c;
+                        if (a <= 0 || b <= 0 || c <= 0) {
+                            request.setAttribute("result", "Invalid Value!");
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                            return;
+                        } else if (a + b > c && b + c > a && a + c > b) {
+                            result = a + b + c;
+                        } else {
+                            request.setAttribute("result", "Not a triangle");
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                            return;
+                        }
                     }
                     case "circle" -> {
                         double radius = Double.parseDouble(request.getParameter("radius"));
+                        if (radius <= 0) {
+                            request.setAttribute("result", "Invalid Value!");
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                            return;
+                        }
                         result = Math.PI * 2 * radius;
                     }
                 }
-                request.setAttribute("result", String.valueOf(result));
             } catch (NumberFormatException e) {
                 request.setAttribute("result", null);
             }
         } else {
             request.setAttribute("result", null);
         }
-
+        request.setAttribute("result", String.valueOf(result));
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

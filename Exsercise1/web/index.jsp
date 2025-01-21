@@ -53,7 +53,7 @@
     </head>
     <body style="margin: 0;overflow: hidden;">
         <section style="color: #fff;height: 100vh;display: flex;flex-direction: column;justify-content: center;align-items: center;">
-            <h2 style="color: #5045E5;">Calculator</h2>
+            <h2 style="color: #5045E5;text-transform: uppercase;font-size: 64px;font-family: fantasy;">Calculator</h2>
             <div style="display: flex;justify-content: center; align-items: stretch;gap:32px;padding-bottom: 64px;">
                 <div style="width:350px;background-color: #1F2937;border-radius: 10px;">
                     <div class="cal" style="display: flex;align-items: center;">
@@ -82,23 +82,23 @@
                         <input hidden id="cal" name="cal"/>
                         <div class="form" style="display: flex; flex-direction: column;gap:10px;padding: 20px;display: none;">
                             <label for="length">Length (a)</label>
-                            <input id="length" name="length" type="number" />
+                            <input id="length" name="length" type="number" required />
                             <label for="width">Width (b)</label>
-                            <input id="width" name="width" type="number" />
+                            <input id="width" name="width" type="number" required/>
                         </div>
 
                         <div class="form" style="display: flex; flex-direction: column;gap:10px;padding: 20px;display: none;">
                             <label for="edgeA">Edge (a)</label>
-                            <input id="edgeA" name="edgeA" type="number" />
+                            <input id="edgeA" name="edgeA" type="number" required/>
                             <label for="edgeB">Edge (b)</label>
-                            <input id="edgeB" name="edgeB" type="number" />
+                            <input id="edgeB" name="edgeB" type="number" required/>
                             <label for="edgeC">Edge (c)</label>
-                            <input id="edgeC" name="edgeC" type="number" />
+                            <input id="edgeC" name="edgeC" type="number" required/>
                         </div>
 
                         <div class="form" style="display: flex; flex-direction: column;gap:10px;padding: 20px;display: none;">
                             <label for="radius">Radius (r)</label>
-                            <input id="radius" name="radius" type="number" />
+                            <input id="radius" name="radius" type="number" required/>
                         </div>
 
                         <div style="display: flex; justify-content: center;background-color: #374151; padding: 10px 0; border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;">
