@@ -1,9 +1,3 @@
-<%-- 
-    Document   : detailsPost
-    Created on : Jun 1, 2020, 11:50:54 AM
-    Author     : pc
---%>
-
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

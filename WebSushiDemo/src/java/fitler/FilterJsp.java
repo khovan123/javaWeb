@@ -11,9 +11,6 @@ public class FilterJsp implements Filter {
 
     private static final boolean debug = true;
 
-    // The filter configuration object we are associated with.  If
-    // this value is null, this filter instance is not currently
-    // configured. 
     private FilterConfig filterConfig = null;
 
     public FilterJsp() {
@@ -24,11 +21,6 @@ public class FilterJsp implements Filter {
         if (debug) {
             log("FilterJsp:DoBeforeProcessing");
         }
-
-        // Write code here to process the request and/or response before
-        // the rest of the filter chain is invoked.
-        // For example, a logging filter might log items on the request object,
-        // such as the parameters.
         /*
 	for (Enumeration en = request.getParameterNames(); en.hasMoreElements(); ) {
 	    String name = (String)en.nextElement();
@@ -52,11 +44,6 @@ public class FilterJsp implements Filter {
         if (debug) {
             log("FilterJsp:DoAfterProcessing");
         }
-
-        // Write code here to process the request and/or response after
-        // the rest of the filter chain is invoked.
-        // For example, a logging filter might log the attributes on the
-        // request object after the request has been processed. 
         /*
 	for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
 	    String name = (String)en.nextElement();
@@ -113,33 +100,18 @@ public class FilterJsp implements Filter {
         }
     }
 
-    /**
-     * Return the filter configuration object for this filter.
-     */
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
     }
 
-    /**
-     * Set the filter configuration object for this filter.
-     *
-     * @param filterConfig The filter configuration object
-     */
     public void setFilterConfig(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
     }
 
-    /**
-     * Destroy method for this filter
-     */
     @Override
     public void destroy() {
     }
 
-    /**
-     * Init method for this filter
-     * @param filterConfig
-     */
     @Override
     public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
@@ -150,9 +122,6 @@ public class FilterJsp implements Filter {
         }
     }
 
-    /**
-     * Return a String representation of this object.
-     */
     @Override
     public String toString() {
         if (filterConfig == null) {
