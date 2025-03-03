@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class User {
 
-    private String userId;
+    private String userID;
     private String username;
     private String password;
     private String email;
@@ -14,9 +14,12 @@ public class User {
     private PostsOfUser postList;
     private Friends friends;
     private NotifyOfUser notifyList;
-
-    public User(String userId, String username, String password, String email, String avatar) {
-        this.userId = userId;
+    
+    public User(){
+    }
+    
+    public User(String userID, String username, String password, String email, String avatar) {
+        this.userID = userID;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -28,12 +31,12 @@ public class User {
         this.notifyList = new NotifyOfUser();
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getUsername() {
@@ -88,12 +91,26 @@ public class User {
         return postList;
     }
 
+    public void setPostList(PostsOfUser postList) {
+        this.postList = postList;
+    }
+
     public Friends getFriends() {
         return friends;
+    }
+
+    public void setFriends(Friends friends) {
+        this.friends = friends;
     }
 
     public NotifyOfUser getNotifyList() {
         return notifyList;
     }
+
+    public void setNotifyList(NotifyOfUser notifyList) {
+        this.notifyList = notifyList;
+    }
+
+    
 
 }
