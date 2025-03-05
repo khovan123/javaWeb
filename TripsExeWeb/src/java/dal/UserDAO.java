@@ -14,8 +14,8 @@ public class UserDAO extends DBContext {
     // CRUD Cho User
     // Create (Thêm người dùng mới)
     public void createUser(User user) throws SQLException {
-        String sql = "INSERT INTO Users(userID, username,password, email, avatar, premiumExpirationDate,premiumAccount,postList,friends,notifyList)"
-                + "VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Users(userID, username, password, email, avatar, premiumExpirationDate, premiumAccount)"
+                + " VALUES(?,?,?,?,?,?,?)";
         try (PreparedStatement st = getConnection().prepareStatement(sql)) {
             st.setString(1, user.getUserID());
             st.setString(2, user.getUsername());
@@ -50,7 +50,7 @@ public class UserDAO extends DBContext {
 
     public void updateUser(User user) throws SQLException {
         String sql = "UPDATE Users SET username = ?, password = ?, email = ?, avatar = ?,"
-                + "premiumExpirationDate = ?, premiumAccount = ?";
+                + "premiumExpirationDate = ?, premiumAccount = ? WHERE userID = ?";
         try (PreparedStatement st = getConnection().prepareStatement(sql)) {
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
